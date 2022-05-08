@@ -12,6 +12,7 @@ repositories {
 
 dependencies {
     api("io.papermc.paper:paper-api:1.18.2-R0.1-SNAPSHOT")
+    api("net.luckperms:api:5.4")
 }
 
 tasks.processResources {
