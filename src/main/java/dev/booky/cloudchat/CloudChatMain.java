@@ -36,8 +36,11 @@ public class CloudChatMain extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        Scoreboard scoreboard = Bukkit.getScoreboardManager().getMainScoreboard();
         teams.values().removeIf(team -> {
-            team.unregister();
+            if (scoreboard.getTeams().contains(team)) {
+                team.unregister();
+            }
             return true;
         });
     }
@@ -78,7 +81,10 @@ public class CloudChatMain extends JavaPlugin {
     }
 
     public void removeTeam(Player player) {
-        Team team = teams.get(player.getUniqueId());
-        if (team != null) team.unregister();
+        Team team = teams.remove(player.getUniqueId());
+        if (team == null) return;
+
+        Scoreboard scoreboard = Bukkit.getScoreboardManager().getMainScoreboard();
+        if (scoreboard.getTeams().contains(team)) team.unregister();
     }
 }
