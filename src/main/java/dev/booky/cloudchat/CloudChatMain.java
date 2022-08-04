@@ -1,8 +1,6 @@
 package dev.booky.cloudchat;
 // Created by booky10 in CloudChat (05:11 08.05.22)
 
-import dev.booky.cloudchat.listeners.ChatListener;
-import dev.booky.cloudchat.listeners.JoinQuitListener;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
@@ -28,9 +26,10 @@ public class CloudChatMain extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        Bukkit.getPluginManager().registerEvents(new ChatListener(), this);
-        Bukkit.getPluginManager().registerEvents(new JoinQuitListener(this), this);
+        PaperConfigChecker.ensurePaper();
+        PaperConfigChecker.ensureVanillaColoring();
 
+        Bukkit.getPluginManager().registerEvents(new JoinQuitListener(this), this);
         Bukkit.getOnlinePlayers().forEach(this::createTeam);
     }
 
@@ -74,7 +73,7 @@ public class CloudChatMain extends JavaPlugin {
         }
 
         team.color(NamedTextColor.GRAY);
-        team.setOption(Team.Option.COLLISION_RULE, Team.OptionStatus.NEVER);
+        team.setOption(Team.Option.COLLISION_RULE, Team.OptionStatus.ALWAYS);
 
         team.addPlayer(player);
         teams.put(player.getUniqueId(), team);

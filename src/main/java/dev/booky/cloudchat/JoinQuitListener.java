@@ -1,7 +1,6 @@
-package dev.booky.cloudchat.listeners;
+package dev.booky.cloudchat;
 // Created by booky10 in CloudChat (05:26 08.05.22)
 
-import dev.booky.cloudchat.CloudChatMain;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;

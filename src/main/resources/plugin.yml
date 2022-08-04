@@ -1,7 +1,7 @@
 name: CloudChat
 version: ${version}
 main: dev.booky.cloudchat.CloudChatMain
-api-version: 1.18
+api-version: 1.19
 author: booky10
 website: https://booky.dev/
 depend: [ LuckPerms ]
