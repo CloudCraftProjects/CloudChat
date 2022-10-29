@@ -3,8 +3,10 @@ package dev.booky.cloudchat;
 
 import org.bukkit.Bukkit;
 import org.bukkit.World;
+import org.jetbrains.annotations.ApiStatus;
 
-public class PaperConfigChecker {
+@ApiStatus.Internal
+class PaperConfigChecker {
 
     public static void ensurePaper() throws IllegalStateException {
         try {

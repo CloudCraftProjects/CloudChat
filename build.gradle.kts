@@ -4,14 +4,14 @@ plugins {
 }
 
 group = "dev.booky"
-version = "1.1.0"
+version = "1.1.1"
 
 repositories {
     maven("https://papermc.io/repo/repository/maven-public/")
 }
 
 dependencies {
-    api("io.papermc.paper:paper-api:1.19.1-R0.1-SNAPSHOT")
+    api("io.papermc.paper:paper-api:1.19.2-R0.1-SNAPSHOT")
     api("net.luckperms:api:5.4")
 }
 
@@ -24,6 +24,7 @@ tasks.processResources {
 
 java {
     withSourcesJar()
+    toolchain.languageVersion.set(JavaLanguageVersion.of(17))
 }
 
 publishing {
