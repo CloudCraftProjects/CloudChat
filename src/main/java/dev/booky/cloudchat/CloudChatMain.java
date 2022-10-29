@@ -131,12 +131,17 @@ public class CloudChatMain extends JavaPlugin implements CloudChatApi {
                     .append(legacy.deserialize(prefixString))
                     .append(SEPERATOR)
                     .build());
+        } else {
+            team.prefix(Component.empty());
         }
+
         if (suffixString != null) {
             team.suffix(Component.text().color(NamedTextColor.WHITE)
                     .append(SEPERATOR)
                     .append(legacy.deserialize(suffixString))
                     .build());
+        } else {
+            team.suffix(Component.empty());
         }
 
         team.color(NamedTextColor.GRAY);
