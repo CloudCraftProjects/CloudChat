@@ -2,21 +2,26 @@ package dev.booky.cloudchat;
 // Created by booky10 in CloudChat (05:26 08.05.22)
 
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.jetbrains.annotations.ApiStatus;
 
-@ApiStatus.Internal
-public record JoinQuitListener(CloudChatMain main) implements Listener {
+class JoinQuitListener implements Listener {
 
-    @EventHandler
-    public void onJoin(PlayerJoinEvent event) {
-        main.createTeam(event.getPlayer());
+    private final CloudChatApi api;
+
+    public JoinQuitListener(CloudChatApi api) {
+        this.api = api;
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onJoin(PlayerJoinEvent event) {
+        this.api.createTeam(event.getPlayer());
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
     public void onQuit(PlayerQuitEvent event) {
-        main.removeTeam(event.getPlayer());
+        this.api.removeTeam(event.getPlayer());
     }
 }

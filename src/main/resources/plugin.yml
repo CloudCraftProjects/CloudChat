@@ -1,6 +1,0 @@
-name: CloudChat
-version: ${version}
-main: dev.booky.cloudchat.CloudChatMain
-api-version: 1.19
-author: booky10
-depend: [ LuckPerms ]
