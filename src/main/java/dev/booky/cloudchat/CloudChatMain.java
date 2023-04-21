@@ -46,7 +46,7 @@ public class CloudChatMain extends JavaPlugin {
         this.subscription = LuckPermsProvider.get().getEventBus().subscribe(UserDataRecalculateEvent.class, event -> {
             Player player = Bukkit.getPlayer(event.getUser().getUniqueId());
             if (player != null) {
-                this.manager.updateTeam(player);
+                Bukkit.getScheduler().runTask(this, () -> this.manager.updateTeam(player));
             }
         });
     }
