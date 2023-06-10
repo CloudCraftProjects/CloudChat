@@ -59,6 +59,10 @@ class CloudChatManager implements CloudChatApi {
 
     @Override
     public boolean updateTeam(Scoreboard scoreboard, Player player) {
+        if (!player.isOnline()) {
+            return false;
+        }
+
         LuckPerms luckperms = LuckPermsProvider.get();
         User user = luckperms.getUserManager().getUser(player.getUniqueId());
         if (user == null) {
