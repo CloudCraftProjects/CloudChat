@@ -4,7 +4,7 @@ package dev.booky.cloudchat;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 class JoinQuitListener implements Listener {
@@ -16,8 +16,10 @@ class JoinQuitListener implements Listener {
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
-    public void onJoin(PlayerJoinEvent event) {
-        this.api.createTeam(event.getPlayer());
+    public void onLogin(PlayerLoginEvent event) {
+        if (event.getResult() == PlayerLoginEvent.Result.ALLOWED) {
+            this.api.createTeam(event.getPlayer());
+        }
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
