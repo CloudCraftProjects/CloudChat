@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "dev.booky"
-version = "1.1.2"
+version = "1.1.3"
 
 repositories {
     maven("https://papermc.io/repo/repository/maven-public/")
