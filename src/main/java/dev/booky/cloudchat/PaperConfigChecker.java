@@ -11,7 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @ApiStatus.Internal
-class PaperConfigChecker {
+final class PaperConfigChecker {
+
+    private PaperConfigChecker() {
+    }
 
     public static void checkVanillaColoring(Logger logger) throws IllegalStateException {
         List<World> worlds = Bukkit.getWorlds();
