@@ -3,22 +3,22 @@ plugins {
     id("maven-publish")
 
     id("net.minecrell.plugin-yml.bukkit") version "0.6.0"
-    id("xyz.jpenilla.run-paper") version "2.3.0"
-    id("io.github.goooler.shadow") version "8.1.8"
+    id("xyz.jpenilla.run-paper") version "2.3.1"
+    id("com.gradleup.shadow") version "8.3.0"
 }
 
 group = "dev.booky"
-version = "1.1.4"
+version = "1.1.5-SNAPSHOT"
 
 repositories {
-    maven("https://repo.papermc.io/repository/maven-public/")
+    maven("https://repo.cloudcraftmc.de/public/")
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.20.6-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT")
     compileOnlyApi("net.luckperms:api:5.4")
 
-    implementation("org.bstats:bstats-bukkit:3.0.2")
+    implementation("org.bstats:bstats-bukkit:3.1.0")
 }
 
 java {
@@ -45,11 +45,11 @@ bukkit {
 
 tasks {
     runServer {
-        minecraftVersion("1.20.6")
+        minecraftVersion("1.21.1")
 
         downloadPlugins {
             // bukkit plugin is not available on modrinth/hangar/github/etc.
-            url("https://download.luckperms.net/1549/bukkit/loader/LuckPerms-Bukkit-5.4.134.jar")
+            url("https://download.luckperms.net/1556/bukkit/loader/LuckPerms-Bukkit-5.4.141.jar")
         }
     }
 
