@@ -13,7 +13,7 @@ A simple Minecraft paper plugin for creating teams based on luckperms permission
 
 https://dl.cloudcraftmc.de/download/tool/cloudchat
 
-**Note: Depends on [LuckPerms](https://luckperms.net/).
+**Note: Depends on [LuckPerms](https://luckperms.net/).**
 
 ## License
 
