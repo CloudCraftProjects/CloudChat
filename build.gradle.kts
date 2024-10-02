@@ -107,6 +107,9 @@ publishMods {
             start = "1.20.6"
             end = "latest"
         }
+
+        // even though luckperms doesn't publish paper jars on modrinth, set this as required
+        requires("luckperms")
     }
 }
 
