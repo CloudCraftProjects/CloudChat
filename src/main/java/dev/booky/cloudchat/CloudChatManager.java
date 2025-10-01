@@ -15,6 +15,7 @@ import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
 import java.text.DecimalFormat;
+import java.util.UUID;
 
 class CloudChatManager implements CloudChatApi {
 
@@ -22,10 +23,10 @@ class CloudChatManager implements CloudChatApi {
     private static final Component SEPARATOR = Component.text(" \u25cf ", NamedTextColor.DARK_GRAY);
 
     @Override
-    public boolean createTeam(Scoreboard scoreboard, Player player) {
+    public boolean createTeam(Scoreboard scoreboard, UUID playerId, String username) {
         LuckPerms luckperms = LuckPermsProvider.get();
 
-        User user = luckperms.getUserManager().getUser(player.getUniqueId());
+        User user = luckperms.getUserManager().getUser(playerId);
         if (user == null) {
             return false;
         }
@@ -38,18 +39,18 @@ class CloudChatManager implements CloudChatApi {
         String teamName = FORMAT.format(9999 - group.getWeight().orElse(0))
                 + RandomStringUtils.randomAlphanumeric(16 - 4);
 
-        Team team = scoreboard.getPlayerTeam(player);
+        Team team = scoreboard.getEntryTeam(username);
         if (team == null) {
             team = scoreboard.registerNewTeam(teamName);
-            team.addPlayer(player);
+            team.addEntry(username);
         }
         this.updateTeam(user, team);
         return true;
     }
 
     @Override
-    public boolean removeTeam(Scoreboard scoreboard, Player player) {
-        Team team = scoreboard.getPlayerTeam(player);
+    public boolean removeTeam(Scoreboard scoreboard, UUID playerId, String username) {
+        Team team = scoreboard.getEntryTeam(username);
         if (team == null) {
             return false;
         }
@@ -58,18 +59,14 @@ class CloudChatManager implements CloudChatApi {
     }
 
     @Override
-    public boolean updateTeam(Scoreboard scoreboard, Player player) {
-        if (!player.isOnline()) {
-            return false;
-        }
-
+    public boolean updateTeam(Scoreboard scoreboard, UUID playerId, String username) {
         LuckPerms luckperms = LuckPermsProvider.get();
-        User user = luckperms.getUserManager().getUser(player.getUniqueId());
+        User user = luckperms.getUserManager().getUser(playerId);
         if (user == null) {
             return false;
         }
 
-        Team team = scoreboard.getPlayerTeam(player);
+        Team team = scoreboard.getEntryTeam(username);
         if (team != null) {
             this.updateTeam(user, team);
             return true;
