@@ -17,8 +17,8 @@ repositories {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT")
-    compileOnlyApi("net.luckperms:api:5.4")
+    compileOnly("io.papermc.paper:paper-api:1.21.9-R0.1-SNAPSHOT")
+    compileOnlyApi("net.luckperms:api:5.5")
 
     implementation("org.bstats:bstats-bukkit:3.1.0")
 }
@@ -40,18 +40,18 @@ publishing {
 
 bukkit {
     main = "$group.cloudchat.CloudChatMain"
-    apiVersion = "1.20"
+    apiVersion = "1.21.7"
     authors = listOf("booky10")
     depend = listOf("LuckPerms")
 }
 
 tasks {
     runServer {
-        minecraftVersion("1.21.1")
+        minecraftVersion("1.21.9")
 
         downloadPlugins {
             // bukkit plugin is not available on modrinth/hangar/github/etc.
-            url("https://download.luckperms.net/1556/bukkit/loader/LuckPerms-Bukkit-5.4.141.jar")
+            url("https://download.luckperms.net/1602/bukkit/loader/LuckPerms-Bukkit-5.5.15.jar")
         }
     }
 
@@ -104,7 +104,7 @@ publishMods {
 
         projectId = "JIftXlPn"
         minecraftVersionRange {
-            start = "1.20.6"
+            start = "1.21.7"
             end = "latest"
         }
 
