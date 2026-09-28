@@ -37,7 +37,7 @@ public class CloudChatMain extends JavaPlugin {
     public void onEnable() {
         PaperConfigChecker.checkVanillaColoring(this.getSLF4JLogger());
 
-        Bukkit.getPluginManager().registerEvents(new JoinQuitListener(this.manager), this);
+        Bukkit.getPluginManager().registerEvents(new JoinQuitListener(this, this.manager), this);
 
         for (Player player : Bukkit.getOnlinePlayers()) {
             this.manager.createTeam(player);
@@ -46,7 +46,7 @@ public class CloudChatMain extends JavaPlugin {
         this.subscription = LuckPermsProvider.get().getEventBus().subscribe(UserDataRecalculateEvent.class, event -> {
             Player player = Bukkit.getPlayer(event.getUser().getUniqueId());
             if (player != null) {
-                Bukkit.getScheduler().runTask(this, () -> this.manager.updateTeam(player));
+                Bukkit.getGlobalRegionScheduler().execute(this, () -> this.manager.updateTeam(player));
             }
         });
     }

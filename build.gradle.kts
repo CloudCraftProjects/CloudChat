@@ -43,6 +43,7 @@ bukkit {
     apiVersion = "1.21.7"
     authors = listOf("booky10")
     depend = listOf("LuckPerms")
+    foliaSupported = true
 }
 
 tasks {
@@ -100,7 +101,7 @@ publishMods {
             .orElse(providers.gradleProperty("ccModrinthToken"))
 
         displayName = "${rootProject.name} v${project.version}"
-        modLoaders.add("paper")
+        modLoaders.addAll("paper", "folia")
 
         projectId = "JIftXlPn"
         minecraftVersionRange {
